@@ -125,3 +125,19 @@ export const updateInfo = async (req, res) => {
   const updatedUser = await user.findByIdAndUpdate(id, { name, bio });
   return updatedUser;
 };
+
+export const updateProfile = async (req, res) => {
+	const { id } = req.params;
+	const { profilePic } = req.body;
+	try {
+    console.log(profilePic)
+		const updated = await user.findByIdAndUpdate(
+			id,
+			{ profilePic: profilePic },
+			{ new: true }
+		);
+		res.status(200).json(updated);
+	} catch (error) {
+		res.status(500).json({ error: error.message });
+	}
+};

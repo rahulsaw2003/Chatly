@@ -8,13 +8,20 @@ import userRoutes from './routes/user.js';
 import chatRoutes from './routes/chat.js';
 import messageRoutes from './routes/message.js';
 import * as Server from 'socket.io';
-import cloudinary from 'cloudinary';
+import cloudinary from "cloudinary";
 
 const app = express();
 const corsConfig = {
   origin: process.env.BASE_URL,
   credentials: true,
 };
+
+cloudinary.config({
+	cloud_name: process.env.CLOUDINARY_NAME,
+	api_key: process.env.CLOUDINARY_API_KEY,
+	api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

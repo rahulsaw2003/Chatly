@@ -8,6 +8,7 @@ import {
   searchUsers,
   updateInfo,
   getUserById,
+  updateProfile,
 } from '../controllers/user.js';
 import { Auth } from '../middleware/user.js';
 const router = express.Router();
@@ -20,5 +21,6 @@ router.post('/api/google', googleAuth);
 router.get('/api/user?', Auth, searchUsers);
 router.get('/api/users/:id', Auth, getUserById);
 router.patch('/api/users/update/:id', Auth, updateInfo);
+router.patch('/api/users/profile/:id',updateProfile)
 
 export default router;

@@ -6,6 +6,7 @@ const API = (token) =>
     headers: { Authorization: token },
   });
 let url = process.env.REACT_APP_SERVER_URL;
+
 export const loginUser = async (body) => {
   try {
     return await axios.post(`${url}/auth/login`, body);
@@ -59,6 +60,17 @@ export const updateUser = async (id, body) => {
     toast.error('Something Went Wrong.try Again!');
   }
 };
+export const updateProfile=async(id,body)=>{
+  try {
+    const token = localStorage.getItem("userToken");
+
+		const { data } = await API(token).patch(`/api/users/profile/${id}`, body);
+		return data;
+  } catch (error) {
+    console.log("error in update user api");
+  
+  }
+}
 export const checkValid = async () => {
   const data = await validUser();
   if (!data?.user) {

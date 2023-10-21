@@ -8,19 +8,12 @@ import userRoutes from './routes/user.js';
 import chatRoutes from './routes/chat.js';
 import messageRoutes from './routes/message.js';
 import * as Server from 'socket.io';
-import cloudinary from "cloudinary";
 
 const app = express();
 const corsConfig = {
   origin: process.env.BASE_URL,
   credentials: true,
 };
-
-cloudinary.config({
-	cloud_name: process.env.CLOUDINARY_NAME,
-	api_key: process.env.CLOUDINARY_API_KEY,
-	api_secret: process.env.CLOUDINARY_API_SECRET,
-});
 
 
 app.use(bodyParser.json());
@@ -35,6 +28,7 @@ mongoDBConnect();
 const server = app.listen(process.env.PORT, () => {
   console.log(`Server Started on PORT - ${process.env.PORT}`);
 });
+
 
 const io = new Server.Server(server, {
   pingTimeout: 60000,

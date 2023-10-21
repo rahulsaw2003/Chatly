@@ -25,20 +25,6 @@ function Regsiter() {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  // const handleImageChange = (e) => {
-	// 	const selectedImage = e.target.files[0];
-
-	// 	if (selectedImage) {
-	// 		const reader = new FileReader();
-	// 		reader.readAsDataURL(selectedImage);
-
-	// 		reader.onload = (event) => {
-	// 			const base64Url = event.target.result;
-  //       console.log(base64Url);
-	// 			setFormData({ ...formData, profilePic: base64Url });
-	// 		};
-	// 	}
-	// };
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
@@ -141,14 +127,8 @@ function Regsiter() {
 									</button>
 								)}
 							</div>
-							{/* <div className="mt-3">
-								<input
-									type="file" // Add the file input for image upload
-									accept="image/*"
-									onChange={handleImageChange} // Handle image selection
-									required
-								/>
-							</div> */}
+						
+            
 							<button
 								style={{
 									background: "linear-gradient(90deg, rgba(0,195,154,1) 0%, rgba(224,205,115,1) 100%)",

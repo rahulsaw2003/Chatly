@@ -16,6 +16,8 @@ import { getChatName } from '../utils/logics';
 import { validUser } from '../apis/auth';
 import Robot from "../assets/robot.gif";
 import { AiOutlineSend } from 'react-icons/ai';
+
+
 const ENDPOINT = process.env.REACT_APP_SERVER_URL
 let socket, selectedChatCompare;
 
@@ -112,6 +114,7 @@ function Chat(props) {
                   <p className='text-[11px] text-[#84878a]'>Last seen recently</p>
                 </div>
               </div>
+              
               <div>
                 <Model />
               </div>
@@ -121,7 +124,7 @@ function Chat(props) {
             </div>
             
             <div className='shadow-2 px-2 text-center flex flex-col-reverse' style={{ position: 'absolute', bottom: 20, width: '100%' }}>
-            {/* Emoji Picker */}
+           
             {showPicker && (
               <div
                 style={{
@@ -142,7 +145,7 @@ function Chat(props) {
                 </div>
 
                 <form
-                  onClick={() => setShowPicker(false)} // Add this event listener to hide the emoji picker
+                  onClick={() => setShowPicker(false)} 
                   onKeyDown={(e) => keyDownFunction(e)}
                   onSubmit={(e) => e.preventDefault()}
                   className='flex-grow'

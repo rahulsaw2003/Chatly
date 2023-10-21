@@ -1,58 +1,55 @@
-import React, { useState, useRef } from 'react'
-import { IoArrowBack } from "react-icons/io5"
-import { useDispatch, useSelector } from 'react-redux'
-import { setShowProfile } from '../redux/profileSlice'
-import { IoMdLogOut } from "react-icons/io"
-import { BsCamera } from "react-icons/bs"
-import InputEditName from './profile/InputEdit_name'
-import InputEditBio from './profile/InputEdit_Bio'
-import { updateProfile, updateUser } from '../apis/auth'
-import { toast } from 'react-toastify'
-import { setUserNameAndBio } from '../redux/activeUserSlice'
+import React, { useState, useRef } from "react";
+import { IoArrowBack } from "react-icons/io5";
+import { useDispatch, useSelector } from "react-redux";
+import { setShowProfile } from "../redux/profileSlice";
+import { IoMdLogOut } from "react-icons/io";
+import { BsCamera } from "react-icons/bs";
+import InputEditName from "./profile/InputEdit_name";
+import InputEditBio from "./profile/InputEdit_Bio";
+import { updateProfile, updateUser } from "../apis/auth";
+import { toast } from "react-toastify";
+import { setUserNameAndBio } from "../redux/activeUserSlice";
+
 function Profile(props) {
-  const dispatch = useDispatch()
-  const { showProfile } = useSelector((state) => state.profile)
-  const activeUser = useSelector((state) => state.activeUser)
-  const [formData, setFormData] = useState({
+	const dispatch = useDispatch();
+	const { showProfile } = useSelector((state) => state.profile);
+	const activeUser = useSelector((state) => state.activeUser);
+	const [formData, setFormData] = useState({
 		name: activeUser.name,
 		bio: activeUser.bio,
 		profilePic: activeUser.profilePic,
 	});
-  const [selectedFile, setSelectedFile] = useState(null);
+	const [selectedFile, setSelectedFile] = useState(null);
 
-  const logoutUser = () => {
-    toast.success("Logout Successfull!")
-    localStorage.removeItem("userToken")
-    window.location.href = "/login"
-  }
+	const logoutUser = () => {
+		toast.success("Logout Successfull!");
+		localStorage.removeItem("userToken");
+		window.location.href = "/login";
+	};
 
-  const fileInputRef = useRef();
+	const fileInputRef = useRef();
 
-  const handleImageChange = (e) => {
-		const image = e.target.files[0];
-    setSelectedFile(image);
+	const handleImageChange = (e) => {
+		const file = e.target.files[0];
+		setSelectedFile(file);
 		const reader = new FileReader();
 
 		reader.onload = (event) => {
 			const base64Url = event.target.result;
-      // console.log(base64Url);
-			setFormData({ ...formData, profilePic: base64Url }); 
+			setFormData({ ...formData, profilePic: base64Url });
 		};
-
-		// reader.readAsDataURL(image);
 	};
 
 	const handleSubmit = async (e) => {
-		e.preventDefault(); 
+		e.preventDefault();
 
 		if (selectedFile) {
 			const data = new FormData();
 			// console.log(formData.profilePic);
 			data.append("profilePic", formData.profilePic);
 
-			
 			await updateProfile(activeUser.id, formData);
-      window.location.reload()
+			window.location.reload();
 			setSelectedFile(null);
 			fileInputRef.current.value = null;
 			toast.success("Image Updated!");
@@ -60,19 +57,17 @@ function Profile(props) {
 			toast.error("Please select an image.");
 		}
 	};
- 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
-  const submit = async () => {
 
-    dispatch(setUserNameAndBio(formData))
-    toast.success("Details Updated!")
-    await updateUser(activeUser.id, formData)
+	const handleChange = (e) => {
+		setFormData({ ...formData, [e.target.name]: e.target.value });
+	};
+	const submit = async () => {
+		dispatch(setUserNameAndBio(formData));
+		toast.success("Details Updated!");
+		await updateUser(activeUser.id, formData);
+	};
 
-  }
-
-  return (
+	return (
 		<div style={{ transition: showProfile ? "0.3s ease-in-out" : "" }} className={props.className}>
 			<div className="absolute w-[100%] min-h-full border-r border-gray-500">
 				<div className="bg-[#166e48] h-[69px] pt-[20px]">
@@ -123,4 +118,4 @@ function Profile(props) {
 	);
 }
 
-export default Profile
+export default Profile;

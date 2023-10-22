@@ -336,3 +336,59 @@ With both the front-end and back-end running, Chatly is ready for real-time mess
 Feel free to explore the application, send and receive messages, and customize your profile. If you encounter any issues or have questions, refer to the documentation or seek assistance from the Chatly community.
 
 Enjoy using Chatly for seamless communication and collaboration!
+
+## Important Dependencies Used
+
+1. **Axios**: Axios is crucial for establishing seamless communication with the back-end, enabling user registration and message retrieval, contributing to a smooth user experience.
+
+2. **React Router and React Router DOM**: These libraries were chosen to facilitate client-side routing in Chatly. They ensure that users can navigate between different pages and components effortlessly, providing a user-friendly journey.
+
+3. **Socket.io-Client**: The backbone of real-time communication, Socket.io-Client empowers Chatly with instant message updates and synchronization in chat rooms, creating a dynamic and engaging user environment.
+
+4. **Mongoose**: Mongoose simplifies interactions with the MongoDB database, enhancing data management, and enforcing data structure and integrity, which is critical to the functioning of the application.
+
+5. **JWT (JSON Web Tokens)**: JWT libraries secure user authentication, manage sessions, and validate user authenticity, strengthening the overall security of the platform.
+
+6. **Simple Peer**: Simple Peer streamlines the implementation of WebRTC-based video and audio calls, enabling real-time video conversations, an optional feature of Chatly.
+
+7. **body-parser**: This library plays a pivotal role in extracting and processing user-submitted data from incoming HTTP requests, ensuring the smooth handling of data on the server.
+
+8. **Cookie Parser**: The integration of Cookie Parser simplifies cookie management, enhancing user interactions, particularly in the context of session management and user authentication.
+
+9. **Google Auth Library**: Google Auth Library facilitates secure user authentication, making it convenient for users to log in and access platform features using their Google credentials.
+
+10. **cors (Cross-Origin Resource Sharing)**: The inclusion of cors enhances the application's security by securely managing and controlling access to server resources from different domains, enabling secure interactions with external APIs and resources.
+
+11. **Bcrypt**: Bcrypt is a fundamental choice for securely storing and managing user passwords, a critical aspect of safeguarding user information.
+
+12. **dotenv**: "dotenv" contributes to enhanced security by managing environment variables separately from the code, while also streamlining configuration management.
+
+13. **Socket.io**: Socket.io forms the core of real-time communication in Chatly, establishing connections between users, which is essential for delivering instant messages and creating dynamic user interactions.
+
+14. **OpenAI**: OpenAI enhances user interactions with AI capabilities, possibly through chatbots or AI-powered features, providing an innovative and engaging dimension.
+
+15. **emoji-mart**: "emoji-mart" brings a fun and expressive aspect to chat conversations, fostering more engaging and enjoyable interactions.
+
+16. **react-google-login**: "react-google-login" simplifies user authentication, providing a secure and convenient login process via Google credentials.
+
+17. **react-notification-badge**: This library keeps users engaged and informed through notification badges, ensuring they stay updated on new messages, updates, and events, thereby enhancing user interactions.
+
+18. **react-toastify**: "react-toastify" is the choice for displaying critical notifications and alerts, improving the user experience by ensuring that important information is promptly communicated.
+
+19. **nodemon**: Nodemon optimizes development by automatically restarting the server upon detecting code modifications, allowing real-time code changes and saving time during development.
+
+20. **Material-UI (Material-UI/Core and Material-UI/Icons)**: Material-UI ensures an aesthetically pleasing and user-friendly interface, aligning with Google's Material Design principles.
+
+21. **Chakra UI (Chakra-UI/React)**: Chakra UI provides a highly customizable UI component library for modern and responsive design components, enhancing the user experience.
+
+## About the Author
+
+**Name:** Rahul Kumar Saw
+**College:** Indian Institute of Technology(IIT) Ropar
+**Department:** Chemical Engineering
+**Roll Number:** 2021CHB1052
+
+This project is developed as an assignment for **I'mbesideyou's 2024 Summer Internship SDE Role**.
+
+Feel free to reach out to me at 2021chb1052@iitrpr.ac.in for any questions, feedback, or collaboration opportunities related to this project.
+

@@ -2,17 +2,14 @@ import React, { createContext, useState, useRef, useEffect } from "react";
 import { io } from "socket.io-client";
 import Peer from "simple-peer";
 
-
-const ENDPOINT = process.env.REACT_APP_SERVER_URL;
 const SocketContext = createContext();
 
-const socket = io(ENDPOINT);
+const socket = io("http://localhost:8000");
 
 const ContextProvider = ({ children }) => {
 	const [callAccepted, setCallAccepted] = useState(false);
 	const [callEnded, setCallEnded] = useState(false);
 	const [stream, setStream] = useState(null);
-	const [cameraActive, setCameraActive] = useState(false);
 	const [name, setName] = useState("");
 	const [call, setCall] = useState({});
 	const [me, setMe] = useState("");
@@ -21,27 +18,18 @@ const ContextProvider = ({ children }) => {
 	const connectionRef = useRef();
 
 	useEffect(() => {
+		// Get user's media stream
 		if (window.location.pathname.startsWith("/video")) {
-			if (!cameraActive) {
-				navigator.mediaDevices
-					.getUserMedia({ video: true, audio: true })
-					.then((currentStream) => {
-						setStream(currentStream);
-						myVideo.current.srcObject = currentStream;
-						setCameraActive(true); // Set cameraActive state to true
-					})
-					.catch((error) => {
-						console.error("Error accessing media devices:", error);
-					});
-			}
-		} else {
-			if (cameraActive) {
-				stream.getTracks().forEach((track) => {
-					track.stop();
+			navigator.mediaDevices
+				.getUserMedia({ video: true, audio: true })
+				.then((currentStream) => {
+					setStream(currentStream);
+					myVideo.current.srcObject = currentStream;
+				})
+				.catch((error) => {
+					// Handle errors if the user denies access to the camera/microphone
+					console.error("Error accessing media devices:", error);
 				});
-				myVideo.current.srcObject = null;
-				setCameraActive(false); // Set cameraActive state to false
-			}
 		}
 
 		// Listen for "me" event from the server
@@ -50,17 +38,7 @@ const ContextProvider = ({ children }) => {
 		socket.on("callUser", ({ from, name: callerName, signal }) => {
 			setCall({ isReceivingCall: true, from, name: callerName, signal });
 		});
-
-		// Return a cleanup function to stop the camera when the component unmounts
-		return () => {
-			if (cameraActive) {
-				stream.getTracks().forEach((track) => {
-					track.stop();
-				});
-			}
-		};
-	}, [cameraActive, stream]);
-
+	}, []);
 
 	const answerCall = () => {
 		setCallAccepted(true);

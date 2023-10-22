@@ -130,6 +130,7 @@ export const updateProfile = async (req, res) => {
 	const { id } = req.params;
 	const { profilePic } = req.body;
 	try {
+    console.log(profilePic)
 		const updated = await user.findByIdAndUpdate(
 			id,
 			{ profilePic: profilePic },

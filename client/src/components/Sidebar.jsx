@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Sidebar = ({ children }) => {
 	const { me, callAccepted, name, setName, callEnded, leaveCall, callUser } = useContext(SocketContext);
+    //console.log(useContext(SocketContext));
 	const [idToCall, setIdToCall] = useState("");
 	const classes = useStyles();
 	//setName(name1)

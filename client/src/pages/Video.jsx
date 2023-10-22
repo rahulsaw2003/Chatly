@@ -36,11 +36,14 @@ const useStyles = makeStyles((theme) => ({
 const Video = () => {
 	const classes = useStyles();
   const { activeChat, notifications } = useSelector((state) => state.chats);
+    console.log(activeChat)
   const { name, id } = useParams();
 
 	return (
 		<div className={classes.wrapper}>
-			
+			{/* 
+			<VideoPlayer />
+			 */}
 			<AppBar className={classes.appBar} position="static" color="inherit">
 				<Typography variant="h2" align="center">
 					Video Chat

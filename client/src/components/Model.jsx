@@ -9,7 +9,7 @@ import { addToGroup, removeUser, renameGroup } from '../apis/chat';
 import { fetchChats } from '../redux/chatsSlice';
 import Search from './group/Search';
 import { getChatName, getChatPhoto } from '../utils/logics';
-import { MdCall } from "react-icons/md";
+import { MdVideoCall } from "react-icons/md";
 
 const style = {
   position: 'absolute',
@@ -31,6 +31,7 @@ function Model(props) {
   const [members, setMembers] = useState([])
   const { activeChat } = useSelector((state) => state.chats)
   const activeUser = useSelector((state) => state.activeUser)
+  // console.log(activeChat.users[1]._id)
 
   const handleOpen = () => {
     setOpen(true);
@@ -80,12 +81,9 @@ function Model(props) {
     return
   }
 
-  const handleVoiceCall = () => {
-		// You can add your logic to initiate a voice call here
-		// For example, you can use a library or API for handling voice calls.
-
-		// For demonstration purposes, you can simply display an alert:
-		alert("Voice call initiated");
+  const handleVideoCall = () => {
+		
+		
 	};
 
   useEffect(() => {
@@ -102,8 +100,8 @@ function Model(props) {
   }, [search])
   return (
 		<>
-			<button onClick={handleVoiceCall} className='mr-12 py-1'>
-				<MdCall size={28} color="#2b2e33" />
+			<button onClick={handleVideoCall} className="mr-12 py-1">
+				<MdVideoCall size={32} color="#2b2e33" />
 			</button>
 
 			<button onClick={handleOpen}>

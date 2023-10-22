@@ -37,23 +37,63 @@ const io = new Server.Server(server, {
   },
 });
 
-io.on('connection', (socket) => {
-  socket.on('setup', (userData) => {
-    socket.join(userData.id);
-    socket.emit('connected');
-  });
-  socket.on('join room', (room) => {
-    socket.join(room);
-  });
-  socket.on('typing', (room) => socket.in(room).emit('typing'));
-  socket.on('stop typing', (room) => socket.in(room).emit('stop typing'));
+// io.on('connection', (socket) => {
+//   socket.on('setup', (userData) => {
+//     socket.join(userData.id);
+//     socket.emit('connected');
+//   });
+//   socket.on('join room', (room) => {
+//     socket.join(room);
+//   });
+//   socket.on('typing', (room) => socket.in(room).emit('typing'));
+//   socket.on('stop typing', (room) => socket.in(room).emit('stop typing'));
 
-  socket.on('new message', (newMessageRecieve) => {
-    var chat = newMessageRecieve.chatId;
-    if (!chat.users) console.log('chats.users is not defined');
-    chat.users.forEach((user) => {
-      if (user._id == newMessageRecieve.sender._id) return;
-      socket.in(user._id).emit('message recieved', newMessageRecieve);
-    });
-  });
+//   socket.on('new message', (newMessageRecieve) => {
+//     var chat = newMessageRecieve.chatId;
+//     if (!chat.users) console.log('chats.users is not defined');
+//     chat.users.forEach((user) => {
+//       if (user._id == newMessageRecieve.sender._id) return;
+//       socket.in(user._id).emit('message recieved', newMessageRecieve);
+//     });
+//   });
+// });
+
+io.on("connection", (socket) => {
+	socket.on("setup", (userData) => {
+		socket.join(userData.id);
+		socket.emit("connected");
+	});
+
+	socket.on("join room", (room) => {
+		socket.join(room);
+	});
+
+	socket.on("typing", (room) => socket.in(room).emit("typing"));
+	socket.on("stop typing", (room) => socket.in(room).emit("stop typing"));
+
+	socket.on("new message", (newMessageReceive) => {
+		const chat = newMessageReceive.chatId;
+		if (!chat.users) {
+			console.log("chat.users is not defined");
+			return;
+		}
+		chat.users.forEach((user) => {
+			if (user._id === newMessageReceive.sender._id) return;
+			socket.in(user._id).emit("message received", newMessageReceive);
+		});
+	});
+
+	socket.on("disconnect", () => {
+		socket.broadcast.emit("callEnded");
+	});
+
+	socket.on("callUser", ({ userToCall, signalData, from, name }) => {
+		io.to(userToCall).emit("callUser", { signal: signalData, from, name });
+	});
+
+	socket.on("answerCall", (data) => {
+		io.to(data.to).emit("callAccepted", data.signal);
+	});
+	console.log(socket.id)
+	socket.emit("me", socket.id); // Emit the user's socket ID
 });

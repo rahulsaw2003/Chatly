@@ -73,16 +73,16 @@ function Group() {
   return (
     <>
       <button
-        className="mt-1 transition duration-150 ease-in-out"
+        className="transition duration-150 ease-in-out"
         onClick={handleOpen}
       >
         <div className="flex justify-start border-r-2">
-          <button className="text-[11px] font-normal tracking-wide flex items-center gap-x-1 bg-[#f6f6f6] text-[#1f2228] py-1 -mb-7 mt-2  px-2 border-[1px] rounded-md border-gray-300 shadow-md">
+          <button className="text-[12px] font-normal tracking-wide flex items-center gap-x-1 bg-[#f6f6f6] text-[#1f2228] py-1 -mb-7 mt-2  px-2 border-[1px] rounded-md border-gray-300 shadow-md">
             New Group <BsPlusLg />
           </button>
         </div>
       </button>
-      <div class="border-b border-gray-400 mt-[18px]"></div>
+      
                 
       <Modal
         open={open}

@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import { Grid, Typography, Paper, makeStyles } from "@material-ui/core";
-
+import React, { useContext, useState } from "react";
+import { Grid, Typography, Paper, makeStyles, Button } from "@material-ui/core";
+import { Navigate } from "react-router-dom";
 import { SocketContext } from "../SocketContext";
 
 const useStyles = makeStyles((theme) => ({
@@ -23,14 +23,26 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const VideoPlayer = ({name1}) => {
-    const { callAccepted, myVideo,name,setName, userVideo, callEnded, stream, call } = useContext(SocketContext);
+const VideoPlayer = ({ name1 }) => {
+	const { callAccepted, myVideo, name, setName, userVideo, callEnded, stream, call } = useContext(SocketContext);
 	const classes = useStyles();
-	setName(name1)
+
+	const [shouldNavigate, setShouldNavigate] = useState(false);
+
+	const handleGoBack = () => {
+		setShouldNavigate(true); // Set the flag to true
+	};
+	setName(name1);
+	if (shouldNavigate) {
+		return <Navigate to="/" replace />; // Render the Navigate component
+	}
 	return (
 		<Grid container className={classes.gridContainer}>
 			{stream && (
 				<Paper className={classes.paper}>
+					<Button variant="contained" color="primary" onClick={handleGoBack}>
+						Go Back
+					</Button>
 					<Grid item xs={12} md={6}>
 						<Typography variant="h5" gutterBottom>
 							{name1}
@@ -50,7 +62,6 @@ const VideoPlayer = ({name1}) => {
 				</Paper>
 			)}
 		</Grid>
-        
 	);
 };
 

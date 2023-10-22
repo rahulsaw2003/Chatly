@@ -9,7 +9,6 @@ import { addToGroup, removeUser, renameGroup } from '../apis/chat';
 import { fetchChats } from '../redux/chatsSlice';
 import Search from './group/Search';
 import { getChatName, getChatPhoto } from '../utils/logics';
-import { MdVideoCall } from "react-icons/md";
 
 const style = {
   position: 'absolute',
@@ -31,7 +30,6 @@ function Model(props) {
   const [members, setMembers] = useState([])
   const { activeChat } = useSelector((state) => state.chats)
   const activeUser = useSelector((state) => state.activeUser)
-  // console.log(activeChat.users[1]._id)
 
   const handleOpen = () => {
     setOpen(true);
@@ -81,10 +79,6 @@ function Model(props) {
     return
   }
 
-  const handleVideoCall = () => {
-		
-		
-	};
 
   useEffect(() => {
     setMembers(activeChat?.users.map((e) => e))
@@ -100,9 +94,6 @@ function Model(props) {
   }, [search])
   return (
 		<>
-			<button onClick={handleVideoCall} className="mr-12 py-1">
-				<MdVideoCall size={32} color="#2b2e33" />
-			</button>
 
 			<button onClick={handleOpen}>
 				<img className="w-[40px] h-[40px] rounded-[25px]" alt="Profile Pic" src={getChatPhoto(activeChat, activeUser)} />

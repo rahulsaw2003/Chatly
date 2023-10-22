@@ -45,7 +45,6 @@ function Profile(props) {
 
 		if (selectedFile) {
 			const data = new FormData();
-			// console.log(formData.profilePic);
 			data.append("profilePic", formData.profilePic);
 
 			await updateProfile(activeUser.id, formData);

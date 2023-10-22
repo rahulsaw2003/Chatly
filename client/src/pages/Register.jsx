@@ -28,7 +28,6 @@ function Regsiter() {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData.profilePic);
     setIsLoading(true)
     if (formData.email.includes("@") && formData.password.length >= 5) {
       const { data } = await registerUser(formData)

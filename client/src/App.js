@@ -7,7 +7,6 @@ import AIBotComponent from './components/AIBotComponent';
 import Video from './pages/Video';
 function App() {
   return (
-
 		<Router>
 			<Routes>
 				<Route exact path="/login" element={<Login />} />
@@ -15,7 +14,7 @@ function App() {
 				<Route exact path="/chats" element={<Home />} />
 				<Route exact path="/chatbot" element={<AIBotComponent />} />
 				<Route exact path="/" element={<Start />} />
-				<Route path="/video/:name/:id" element={<Video/>} />
+				<Route path="/video/:name/:id" element={<Video />} />
 			</Routes>
 		</Router>
 	);

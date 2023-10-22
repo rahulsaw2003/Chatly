@@ -27,7 +27,6 @@ function Chat(props) {
   const { activeChat, notifications } = useSelector((state) => state.chats)
   const dispatch = useDispatch()
   const [message, setMessage] = useState("")
-  const [videoCall, setVideoCall] = useState("");
   const [messages, setMessages] = useState([])
   const [socketConnected, setSocketConnected] = useState(false)
   const [typing, setTyping] = useState(false)
@@ -109,10 +108,7 @@ function Chat(props) {
     </div>
   }
 
-  const handleVideoCall = (e) => {
-	e.preventDefault();
 
-	};
   return (
 		<>
 			{activeChat ? (
@@ -183,12 +179,12 @@ function Chat(props) {
 									/>
 								</form>
 								<Link to={`/video/${activeUser?.name}/${activeUser?.id}`}>
-									<button className="bg-[#741dc0] border-[2px] border-[#d4d4d4] text-[22px] px-2 py-1 text-[#ffffff] font-medium rounded-[7px] -mt-1">
+									<button className="bg-[#741dc0] border-[2px] border-[#d4d4d4] text-[22px] px-2 py-1 text-[#ffffff] font-medium rounded-[7px] -mt-1 mr-2">
 										<MdVideoCall />
 									</button>
 								</Link>
 
-								<button onClick={(e) => keyDownFunction(e)} className="bg-[#741dc0] border-[2px] border-[#d4d4d4] text-[22px] px-2 py-1 text-[#ffffff] font-medium rounded-[7px] -mt-1">
+								<button onClick={(e) => keyDownFunction(e)} className="bg-[#741dc0] border-[2px] border-[#d4d4d4] text-[22px] px-[8px] py-1 text-[#ffffff] font-medium rounded-[7px] -mt-1">
 									<AiOutlineSend />
 								</button>
 							</div>

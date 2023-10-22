@@ -199,7 +199,6 @@ Chatly provides the option to integrate an AI-powered chatbot for enhanced user 
     - OpenAI provides comprehensive documentation and guidelines on how to use their API, including how to generate API keys, API endpoints, and example code snippets.
 
 For reference, here's the OpenAI API documentation:
-
 [OpenAI API Documentation](https://platform.openai.com/docs/api-reference/introduction)
 
 4. **Integrate the API Key**

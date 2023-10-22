@@ -42,6 +42,7 @@ const Sidebar = ({ children }) => {
     //console.log(useContext(SocketContext));
 	const [idToCall, setIdToCall] = useState("");
 	const classes = useStyles();
+	//setName(name1)
 
 	return (
 		<Container className={classes.container}>

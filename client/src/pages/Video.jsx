@@ -49,8 +49,8 @@ const Video = () => {
 					Video Chat
 				</Typography>
 			</AppBar>
-			<VideoPlayer name={name}/>
-			<Sidebar>
+			<VideoPlayer name={name} />
+			<Sidebar name1={name}>
 				<Notifications />
 			</Sidebar>
 		</div>

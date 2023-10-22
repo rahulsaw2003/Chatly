@@ -109,14 +109,15 @@ git clone https://github.com/rahulsaw2003/Chatly.git
 Or you can also download as zip and unzip on your local machine.
 
 ### Front-End Setup
-- Open the project in your prefered code editor. Open the terminal and navigate to the Chatly project's **client** directory by running the command: **cd client**
 
-- Install front-end dependencies by running the command: **npm install**
+- Open the project in your prefered code editor. Open the terminal and navigate to the Chatly project's **client** directory by running the command: `cd client`
+
+- Install front-end dependencies by running the command: `npm install`
 
 - Create a **.env** file in the client directory, in order to store the API Keys and supply the following credentials.
 ```
 REACT_APP_GOOGLE_CLIENT_ID =        
-REACT_APP_SERVER_URL='http://localhost:8000'
+REACT_APP_SERVER_URL = 'http://localhost:8000'
 REACT_APP_CHATBOT_API_KEY = 
 ```
 
@@ -162,8 +163,177 @@ To enable Google login and registration in Chatly, you'll need a Google Client I
    - After configuring the OAuth consent screen and authorized origins, click "Create" to generate the OAuth 2.0 Client ID.
    - Your Client ID and Client Secret will be displayed on the screen. Make sure to copy and store the Client ID securely.
 
-## Using the Google Client ID in Chatly
+8. **Using the Google Client ID in Chatly**
 
-Now that you have obtained your Google Client ID, you can integrate it into your Chatly application. Assign it to the `REACT_APP_GOOGLE_CLIENT_ID` in client side **.env** file
+   - Now that you have obtained your Google Client ID, Open the `.env` file in the `client` directory and update the following environment variable:
+
+     `REACT_APP_GOOGLE_CLIENT_ID = your-google-client-id` 
 
 By following these steps, you can obtain a Google Client ID and integrate Google login and registration functionality into the Chatly application.
+
+### Getting ChatGPT API Key - AI Chatbot Integration
+
+Chatly provides the option to integrate an AI-powered chatbot for enhanced user interactions. To enable this feature, you'll need to obtain an API key from ChatGPT by OpenAI. Here's how to get started:
+
+1. **Sign Up or Log In to OpenAI**
+
+   - If you don't already have an OpenAI account, visit the OpenAI website and sign up. If you have an existing account, log in.
+
+     [OpenAI Sign Up/Login](https://beta.openai.com/)
+
+2. **Navigate to the API section**
+
+    - After logging in, in the top right corner of your screen you'll see an icon with your account name. Click it to open the dropdown menu then click "View API keys".
+
+3. **Generate a new API key**
+
+    - Now you're in the API keys section, you should see a button "Create new secret key". Click on that button to generate a new API key. After you enter a name for your key, click the "Create secret key" button.
+
+
+4. **Save your API key**
+
+    - Next, you will see your secret key that has been generated. Make sure to copy your secret key and paste it into whatever application you need it for.
+
+5. **Follow OpenAI's Documentation**
+
+    - OpenAI provides comprehensive documentation and guidelines on how to use their API, including how to generate API keys, API endpoints, and example code snippets.
+
+For reference, here's the OpenAI API documentation:
+
+[OpenAI API Documentation](https://platform.openai.com/docs/api-reference/introduction)
+
+4. **Integrate the API Key**
+
+   - Once you have obtained an API key. Open the `.env` file in the `client` directory and update the following environment variable:
+
+     `OPENAI_API_KEY = your-openai-api-key`
+
+You are now done with the front-end setup, now move on to the back-end code setup on your local machine.
+
+### Back-End Setup
+- Open the project in your prefered code editor. Open the terminal and navigate to the Chatly project's **server** directory by running the command: `cd server`
+
+- Install back-end dependencies by running the command: `npm install`
+
+- Create a **.env** file in the server directory, in order to store the API Keys and supply the following credentials. Use the same Google Client ID which you have created for the frontend.
+```
+PORT = 8000
+
+MONGODB_URL=
+
+JWT_SECRET=
+
+BASE_URL = "http://localhost:3000"
+ 
+```
+
+### MongoDB Atlas Database Configuration
+
+Chatly utilizes MongoDB Atlas, a cloud-based database service, to store user profiles, messages, and group chat data. To get your Chatly application connected to MongoDB Atlas, follow these steps:
+
+1: **MongoDB Atlas Sign Up**
+
+  - If you haven't already, sign up for MongoDB Atlas, a cloud-hosted MongoDB service, by visiting the official website:
+
+    [MongoDB Atlas Sign Up](https://www.mongodb.com/cloud/atlas/register)
+
+Follow the registration steps to create your MongoDB Atlas account.
+
+2. **Create a New Cluster**
+
+Once you've registered and logged in to your MongoDB Atlas account, you'll need to create a new cluster to host your MongoDB database. Follow these steps:
+
+- In your MongoDB Atlas dashboard, click the "Clusters" option.
+
+- Click the "Build a New Cluster" button.
+
+- Follow the configuration options, such as selecting your preferred cloud provider, region, and cluster tier. You can choose the free tier or any tier that suits your needs.
+
+- Click "Create Cluster" to initiate the cluster creation process. This may take a few minutes.
+
+3. **MongoDB Atlas Connection URL**
+
+Now that you have your MongoDB Atlas cluster set up, you'll need to create a connection URL to configure your Chatly backend. Follow these steps to obtain the connection URL:
+
+1. In your MongoDB Atlas dashboard, locate the cluster you've just created.
+
+2. Click "Connect."
+
+3. Choose "Connect your application."
+
+4. Select your Node.js version and copy the connection string provided.
+
+5. Replace `<password>` with your MongoDB Atlas password and `<dbname>` with your desired database name.
+
+Your MongoDB Atlas connection URL should resemble:
+
+`mongodb+srv://<username>:<password>@cluster0.mongodb.net/<dbname>?retryWrites=true&w=majority`
+
+
+4. **Update the Chatly Backend**
+
+Open the `.env` file in the `server` directory of the Chatly project. Modify the `MONGODB_URL` environment variable with your MongoDB Atlas connection URL:
+
+
+`MONGODB_URL=mongodb+srv://<username>:<password>@cluster0.mongodb.net/<dbname>?retryWrites=true&w=majority`
+
+Your Chatly backend is now set to connect to MongoDB Atlas. Make sure to secure your .env file and do not share your MongoDB Atlas credentials publicly.
+
+
+### JWT Secret Key Setup
+
+Chatly uses JSON Web Tokens (JWT) for secure user authentication. To set up the `JWT_SECRET` key in your Chatly backend, follow these steps:
+
+1. **Create a JWT Secret Key**
+
+   - The `JWT_SECRET` is a secret key used to sign and verify JWTs, ensuring the authenticity of user requests. You can create a strong, random secret key using a password manager or a secure key generator. Make sure it's a long, complex string of characters that is difficult to guess.
+
+   You can use a command-line tool like `openssl` to generate a random JWT secret key:
+
+   `openssl rand -base64 64`
+
+   This will generate a 64-character random key.
+
+2. **Configure the JWT_SECRET in the Backend**
+   
+   - In the backend, open the .env file located in the server directory. Add the JWT_SECRET variable and set it to the secret key you generated:
+
+    `JWT_SECRET=your-jwt-secret-key`
+
+It's essential to keep your JWT_SECRET key secure and confidential. Do not share it in public repositories or expose it in any way. 
+
+By following these steps, you ensure the security and confidentiality of your MongoDB Atlas credentials and JWT_SECRET key, which are vital for the operation and security of your Chatly application.
+
+For any concerns or questions regarding security and setup, consult the respective MongoDB and JWT documentation or seek support from their resources.
+
+## Running the Chatly Application
+
+Now that you've set up the Chatly backend and frontend, you're ready to run the application. Follow these simple steps:
+
+#### Front-End:
+
+1. Open a terminal and navigate to the client directory of the project folder:
+
+   `cd Chatly/client`
+
+2. Start the development server:
+
+   `npm start`
+
+This will launch the Chatly front-end, making it accessible in your web browser at `http://localhost:3000`. You can now interact with the user interface.
+
+#### Back-End:
+
+1. Open a new terminal window and navigate to the server directory of the project folder:
+
+    `cd Chatly/server`
+
+2. Start the back-end server:
+
+    `npm start`
+
+With both the front-end and back-end running, Chatly is ready for real-time messaging, user authentication, and group chat functionality.
+
+Feel free to explore the application, send and receive messages, and customize your profile. If you encounter any issues or have questions, refer to the documentation or seek assistance from the Chatly community.
+
+Enjoy using Chatly for seamless communication and collaboration!

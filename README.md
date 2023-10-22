@@ -26,7 +26,6 @@ Chatly is a real-time chat website that leverages the power of modern web techno
 
 - **Video Calling**: Connect through face-to-face video calls, maintaining real-time communication with friends and colleagues.
 
-
 ## System Architecture
 
 Chatly's system architecture is thoughtfully designed to provide real-time communication and a user-friendly experience. It comprises three main components:
@@ -56,7 +55,6 @@ Chatly's system architecture is thoughtfully designed to provide real-time commu
 
 This system architecture empowers Chatly to offer real-time messaging, group chat functionality, user authentication, and a seamless user experience. By using React.js for the front-end, Node.js and Express.js for the back-end, and MongoDB for the database, we ensure the application's efficiency and scalability. Also, the AI integration with the OpenAI library enhances user engagement through chatbot assistance.
 
-
 ## Data Flow
 
 The data flow within Chatly is a pivotal element of its real-time messaging system, enabling seamless data exchange from user input to the database and back to the user. This process involves the following key steps:
@@ -74,7 +72,6 @@ The data flow within Chatly is a pivotal element of its real-time messaging syst
 6. **Response to User**: After successful database interactions and real-time communication, the back-end forwards responses to the front-end. The front-end displays messages in real-time and updates the user interface accordingly, ensuring that users stay informed and engaged.
 
 This data flow ensures that user interactions and data are processed efficiently and delivered in real-time.
-
 
 ## Design Principles
 
@@ -115,10 +112,11 @@ Or you can also download as zip and unzip on your local machine.
 - Install front-end dependencies by running the command: `npm install`
 
 - Create a **.env** file in the client directory, in order to store the API Keys and supply the following credentials.
+
 ```
-REACT_APP_GOOGLE_CLIENT_ID =        
+REACT_APP_GOOGLE_CLIENT_ID =
 REACT_APP_SERVER_URL = 'http://localhost:8000'
-REACT_APP_CHATBOT_API_KEY = 
+REACT_APP_CHATBOT_API_KEY =
 ```
 
 ### Getting a Google Client ID
@@ -151,7 +149,9 @@ To enable Google login and registration in Chatly, you'll need a Google Client I
 
    - If prompted, configure your OAuth consent screen. This is the screen that users see when they log in with Google. Provide the required details.
    - In the Test Users section, provide the Email ID through which you want to test the Google Login/Registration
+
 6. **Create Credentials:**
+
    - Now go to the Credentials tab and Create Credentials, then select the OAuth client ID.
    - In the next page select Web Application as the Application type and name your OAuth Client.
 
@@ -167,7 +167,7 @@ To enable Google login and registration in Chatly, you'll need a Google Client I
 
    - Now that you have obtained your Google Client ID, Open the `.env` file in the `client` directory and update the following environment variable:
 
-     `REACT_APP_GOOGLE_CLIENT_ID = your-google-client-id` 
+     `REACT_APP_GOOGLE_CLIENT_ID = your-google-client-id`
 
 By following these steps, you can obtain a Google Client ID and integrate Google login and registration functionality into the Chatly application.
 
@@ -183,20 +183,19 @@ Chatly provides the option to integrate an AI-powered chatbot for enhanced user 
 
 2. **Navigate to the API section**
 
-    - After logging in, in the top right corner of your screen you'll see an icon with your account name. Click it to open the dropdown menu then click "View API keys".
+   - After logging in, in the top right corner of your screen you'll see an icon with your account name. Click it to open the dropdown menu then click "View API keys".
 
 3. **Generate a new API key**
 
-    - Now you're in the API keys section, you should see a button "Create new secret key". Click on that button to generate a new API key. After you enter a name for your key, click the "Create secret key" button.
-
+   - Now you're in the API keys section, you should see a button "Create new secret key". Click on that button to generate a new API key. After you enter a name for your key, click the "Create secret key" button.
 
 4. **Save your API key**
 
-    - Next, you will see your secret key that has been generated. Make sure to copy your secret key and paste it into whatever application you need it for.
+   - Next, you will see your secret key that has been generated. Make sure to copy your secret key and paste it into whatever application you need it for.
 
 5. **Follow OpenAI's Documentation**
 
-    - OpenAI provides comprehensive documentation and guidelines on how to use their API, including how to generate API keys, API endpoints, and example code snippets.
+   - OpenAI provides comprehensive documentation and guidelines on how to use their API, including how to generate API keys, API endpoints, and example code snippets.
 
 For reference, here's the OpenAI API documentation:
 [OpenAI API Documentation](https://platform.openai.com/docs/api-reference/introduction)
@@ -210,11 +209,13 @@ For reference, here's the OpenAI API documentation:
 You are now done with the front-end setup, now move on to the back-end code setup on your local machine.
 
 ### Back-End Setup
+
 - Open the project in your prefered code editor. Open the terminal and navigate to the Chatly project's **server** directory by running the command: `cd server`
 
 - Install back-end dependencies by running the command: `npm install`
 
 - Create a **.env** file in the server directory, in order to store the API Keys and supply the following credentials. Use the same Google Client ID which you have created for the frontend.
+
 ```
 PORT = 8000
 
@@ -222,8 +223,10 @@ MONGODB_URL=
 
 JWT_SECRET=
 
+CLIENT_ID = your-google-client-id (generated above)
+
 BASE_URL = "http://localhost:3000"
- 
+
 ```
 
 ### MongoDB Atlas Database Configuration
@@ -232,9 +235,9 @@ Chatly utilizes MongoDB Atlas, a cloud-based database service, to store user pro
 
 1: **MongoDB Atlas Sign Up**
 
-  - If you haven't already, sign up for MongoDB Atlas, a cloud-hosted MongoDB service, by visiting the official website:
+- If you haven't already, sign up for MongoDB Atlas, a cloud-hosted MongoDB service, by visiting the official website:
 
-    [MongoDB Atlas Sign Up](https://www.mongodb.com/cloud/atlas/register)
+  [MongoDB Atlas Sign Up](https://www.mongodb.com/cloud/atlas/register)
 
 Follow the registration steps to create your MongoDB Atlas account.
 
@@ -268,16 +271,13 @@ Your MongoDB Atlas connection URL should resemble:
 
 `mongodb+srv://<username>:<password>@cluster0.mongodb.net/<dbname>?retryWrites=true&w=majority`
 
-
 4. **Update the Chatly Backend**
 
 Open the `.env` file in the `server` directory of the Chatly project. Modify the `MONGODB_URL` environment variable with your MongoDB Atlas connection URL:
 
-
 `MONGODB_URL=mongodb+srv://<username>:<password>@cluster0.mongodb.net/<dbname>?retryWrites=true&w=majority`
 
 Your Chatly backend is now set to connect to MongoDB Atlas. Make sure to secure your .env file and do not share your MongoDB Atlas credentials publicly.
-
 
 ### JWT Secret Key Setup
 
@@ -294,12 +294,12 @@ Chatly uses JSON Web Tokens (JWT) for secure user authentication. To set up the 
    This will generate a 64-character random key.
 
 2. **Configure the JWT_SECRET in the Backend**
-   
+
    - In the backend, open the .env file located in the server directory. Add the JWT_SECRET variable and set it to the secret key you generated:
 
-    `JWT_SECRET=your-jwt-secret-key`
+   `JWT_SECRET=your-jwt-secret-key`
 
-It's essential to keep your JWT_SECRET key secure and confidential. Do not share it in public repositories or expose it in any way. 
+It's essential to keep your JWT_SECRET key secure and confidential. Do not share it in public repositories or expose it in any way.
 
 By following these steps, you ensure the security and confidentiality of your MongoDB Atlas credentials and JWT_SECRET key, which are vital for the operation and security of your Chatly application.
 
@@ -325,14 +325,72 @@ This will launch the Chatly front-end, making it accessible in your web browser 
 
 1. Open a new terminal window and navigate to the server directory of the project folder:
 
-    `cd Chatly/server`
+   `cd Chatly/server`
 
 2. Start the back-end server:
 
-    `npm start`
+   `npm start`
 
 With both the front-end and back-end running, Chatly is ready for real-time messaging, user authentication, and group chat functionality.
 
 Feel free to explore the application, send and receive messages, and customize your profile. If you encounter any issues or have questions, refer to the documentation or seek assistance from the Chatly community.
 
 Enjoy using Chatly for seamless communication and collaboration!
+
+## Important Dependencies Used
+
+1. **Axios**: Axios is crucial for establishing seamless communication with the back-end, enabling user registration and message retrieval, contributing to a smooth user experience.
+
+2. **React Router and React Router DOM**: These libraries were chosen to facilitate client-side routing in Chatly. They ensure that users can navigate between different pages and components effortlessly, providing a user-friendly journey.
+
+3. **Socket.io-Client**: The backbone of real-time communication, Socket.io-Client empowers Chatly with instant message updates and synchronization in chat rooms, creating a dynamic and engaging user environment.
+
+4. **Mongoose**: Mongoose simplifies interactions with the MongoDB database, enhancing data management, and enforcing data structure and integrity, which is critical to the functioning of the application.
+
+5. **JWT (JSON Web Tokens)**: JWT libraries secure user authentication, manage sessions, and validate user authenticity, strengthening the overall security of the platform.
+
+6. **Simple Peer**: Simple Peer streamlines the implementation of WebRTC-based video and audio calls, enabling real-time video conversations, an optional feature of Chatly.
+
+7. **body-parser**: This library plays a pivotal role in extracting and processing user-submitted data from incoming HTTP requests, ensuring the smooth handling of data on the server.
+
+8. **Cookie Parser**: The integration of Cookie Parser simplifies cookie management, enhancing user interactions, particularly in the context of session management and user authentication.
+
+9. **Google Auth Library**: Google Auth Library facilitates secure user authentication, making it convenient for users to log in and access platform features using their Google credentials.
+
+10. **cors (Cross-Origin Resource Sharing)**: The inclusion of cors enhances the application's security by securely managing and controlling access to server resources from different domains, enabling secure interactions with external APIs and resources.
+
+11. **Bcrypt**: Bcrypt is a fundamental choice for securely storing and managing user passwords, a critical aspect of safeguarding user information.
+
+12. **dotenv**: "dotenv" contributes to enhanced security by managing environment variables separately from the code, while also streamlining configuration management.
+
+13. **Socket.io**: Socket.io forms the core of real-time communication in Chatly, establishing connections between users, which is essential for delivering instant messages and creating dynamic user interactions.
+
+14. **OpenAI**: OpenAI enhances user interactions with AI capabilities, possibly through chatbots or AI-powered features, providing an innovative and engaging dimension.
+
+15. **emoji-mart**: "emoji-mart" brings a fun and expressive aspect to chat conversations, fostering more engaging and enjoyable interactions.
+
+16. **react-google-login**: "react-google-login" simplifies user authentication, providing a secure and convenient login process via Google credentials.
+
+17. **react-notification-badge**: This library keeps users engaged and informed through notification badges, ensuring they stay updated on new messages, updates, and events, thereby enhancing user interactions.
+
+18. **react-toastify**: "react-toastify" is the choice for displaying critical notifications and alerts, improving the user experience by ensuring that important information is promptly communicated.
+
+19. **nodemon**: Nodemon optimizes development by automatically restarting the server upon detecting code modifications, allowing real-time code changes and saving time during development.
+
+20. **Material-UI (Material-UI/Core and Material-UI/Icons)**: Material-UI ensures an aesthetically pleasing and user-friendly interface, aligning with Google's Material Design principles.
+
+21. **Chakra UI (Chakra-UI/React)**: Chakra UI provides a highly customizable UI component library for modern and responsive design components, enhancing the user experience.
+
+## About the Author
+
+**Name:** Rahul Kumar Saw
+
+**College:** Indian Institute of Technology(IIT) Ropar
+
+**Department:** Chemical Engineering
+
+**Roll Number:** 2021CHB1052
+
+This project is developed as an assignment for **I'mbesideyou's 2024 Summer Internship SDE Role**.
+
+Feel free to reach out to me at 2021chb1052@iitrpr.ac.in for any questions, feedback, or collaboration opportunities related to this project.

@@ -19,20 +19,22 @@ const ContextProvider = ({ children }) => {
 
 	useEffect(() => {
 		// Get user's media stream
-		navigator.mediaDevices
-			.getUserMedia({ video: true, audio: true })
-			.then((currentStream) => {
-				setStream(currentStream);
-				myVideo.current.srcObject = currentStream;
-			})
-			.catch((error) => {
-				// Handle errors if user denies access to the camera/microphone
-				console.error("Error accessing media devices:", error);
-			});
+		if (window.location.pathname.startsWith("/video")) {
+			navigator.mediaDevices
+				.getUserMedia({ video: true, audio: true })
+				.then((currentStream) => {
+					setStream(currentStream);
+					myVideo.current.srcObject = currentStream;
+				})
+				.catch((error) => {
+					// Handle errors if the user denies access to the camera/microphone
+					console.error("Error accessing media devices:", error);
+				});
+		}
 
 		// Listen for "me" event from the server
 		socket.on("me", (id) => setMe(id));
-		console.log(me)
+		console.log(me);
 		// Listen for incoming calls
 		socket.on("callUser", ({ from, name: callerName, signal }) => {
 			setCall({ isReceivingCall: true, from, name: callerName, signal });

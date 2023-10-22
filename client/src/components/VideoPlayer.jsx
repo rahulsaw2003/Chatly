@@ -23,17 +23,17 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const VideoPlayer = ({name}) => {
-    const { callAccepted, myVideo, userVideo, callEnded, stream, call } = useContext(SocketContext);
+const VideoPlayer = ({name1}) => {
+    const { callAccepted, myVideo,name,setName, userVideo, callEnded, stream, call } = useContext(SocketContext);
 	const classes = useStyles();
-
+	setName(name1)
 	return (
 		<Grid container className={classes.gridContainer}>
 			{stream && (
 				<Paper className={classes.paper}>
 					<Grid item xs={12} md={6}>
 						<Typography variant="h5" gutterBottom>
-							{name}
+							{name1}
 						</Typography>
 						<video playsInline muted ref={myVideo} autoPlay className={classes.video} />
 					</Grid>

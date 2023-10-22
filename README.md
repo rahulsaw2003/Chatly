@@ -384,8 +384,11 @@ Enjoy using Chatly for seamless communication and collaboration!
 ## About the Author
 
 **Name:** Rahul Kumar Saw
+
 **College:** Indian Institute of Technology(IIT) Ropar
+
 **Department:** Chemical Engineering
+
 **Roll Number:** 2021CHB1052
 
 This project is developed as an assignment for **I'mbesideyou's 2024 Summer Internship SDE Role**.

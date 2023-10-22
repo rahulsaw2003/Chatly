@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator } from "@chatscope/chat-ui-kit-react";
 
-const API_KEY = "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";
+const API_KEY = process.env.REACT_APP_CHATBOT_API_KEY;
 
 const systemMessage = {
 	role: "system",

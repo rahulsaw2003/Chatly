@@ -47,8 +47,6 @@ function Chat(props) {
     }
   }
 
-//   console.log(activeChat._id);
-//  console.log(activeUser)  
 
   useEffect(() => {
     socket = io(ENDPOINT)
@@ -80,7 +78,6 @@ function Chat(props) {
 
   }, [activeChat])
 
-//   console.log("hey", selectedChatCompare)
 
   useEffect(() => {
     socket.on("message recieved", (newMessageRecieved) => {
@@ -95,7 +92,6 @@ function Chat(props) {
       dispatch(fetchChats())
     })
   })
-console.log(activeUser)
  
   useEffect(() => {
     const isValid = async () => {

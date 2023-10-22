@@ -34,7 +34,6 @@ const ContextProvider = ({ children }) => {
 
 		// Listen for "me" event from the server
 		socket.on("me", (id) => setMe(id));
-		console.log(me);
 		// Listen for incoming calls
 		socket.on("callUser", ({ from, name: callerName, signal }) => {
 			setCall({ isReceivingCall: true, from, name: callerName, signal });

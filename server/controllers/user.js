@@ -1,39 +1,21 @@
 import user from '../models/userModel.js';
 import bcrypt from 'bcryptjs';
 import { OAuth2Client } from 'google-auth-library';
-// export const register = async (req, res) => {
-//   const { firstname, lastname, email, password } = req.body;
-//   console.log(password)
-//   try {
-//     const existingUser = await user.findOne({ email });
-//     if (existingUser)
-//       return res.status(400).json({ error: 'User already Exits' });
-//     console.log(firstname)
-//     const fullname = firstname + ' ' + lastname;
-//     const newuser = new user({ email, password, name: fullname });
-//     const token = await newuser.generateAuthToken();
-//     await newuser.save();
-//     res.json({ message: 'success', token: token });
-//   } catch (error) {
-//     console.log('Error in register ' + error);
-//     res.status(500).send(error);
-//   }
-// };
 export const register = async (req, res) => {
-	const { firstname, lastname, email, password } = req.body;
-	try {
-		const existingUser = await user.findOne({ email });
-		if (existingUser) return res.status(400).json({ error: "User already Exits" });
-		const fullname = firstname + " " + lastname;
-		const newuser = new user({ email, password, name: fullname });
-		const token = await newuser.generateAuthToken();
-    console.log(token)
-		await newuser.save();
-		res.json({ message: "success", token: token });
-	} catch (error) {
-		console.log("Error in register " + error);
-		res.status(500).send(error);
-	}
+  const { firstname, lastname, email, password } = req.body;
+  try {
+    const existingUser = await user.findOne({ email });
+    if (existingUser)
+      return res.status(400).json({ error: 'User already Exits' });
+    const fullname = firstname + ' ' + lastname;
+    const newuser = new user({ email, password, name: fullname });
+    const token = await newuser.generateAuthToken();
+    await newuser.save();
+    res.json({ message: 'success', token: token });
+  } catch (error) {
+    console.log('Error in register ' + error);
+    res.status(500).send(error);
+  }
 };
 export const login = async (req, res) => {
   const { email, password } = req.body;

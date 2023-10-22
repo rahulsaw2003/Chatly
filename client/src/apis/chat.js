@@ -10,6 +10,7 @@ export const acessCreate = async (body) => {
     const token = localStorage.getItem('userToken');
 
     const { data } = await API(token).post('/api/chat', body);
+    // console.log(data);
     return data;
   } catch (error) {
     console.log('error in access create api');

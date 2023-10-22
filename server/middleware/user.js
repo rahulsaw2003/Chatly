@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+// import jwt from 'jsonwebtoken';
 import user from '../models/userModel.js';
 
 export const Auth = async (req, res, next) => {
@@ -6,7 +6,7 @@ export const Auth = async (req, res, next) => {
     let token = req.headers.authorization.split(' ')[0]; //when using browser this line
     // let token = req.headers.authorization.split(' ')[1]; //when using postman this line
     if (token.length < 500) {
-      const verifiedUser = jwt.verify(token, process.env.JWT_SECRET);
+      const verifiedUser = jwt.verify(token, process.env.SECRET);
       const rootUser = await user
         .findOne({ _id: verifiedUser.id })
         .select('-password');
@@ -25,7 +25,7 @@ export const Auth = async (req, res, next) => {
     }
     next();
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.json({ error: 'Invalid Token' });
   }
 };

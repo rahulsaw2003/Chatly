@@ -4,11 +4,9 @@ import Regsiter from './pages/Register';
 import Home from './pages/Home';
 import Start from './components/Start';
 import AIBotComponent from './components/AIBotComponent';
-import Voice from './components/Voice';
 import Video from './pages/Video';
 function App() {
   return (
-		// <div className="bg-[#cca33d]" >
 
 		<Router>
 			<Routes>
@@ -17,7 +15,6 @@ function App() {
 				<Route exact path="/chats" element={<Home />} />
 				<Route exact path="/chatbot" element={<AIBotComponent />} />
 				<Route exact path="/" element={<Start />} />
-				<Route exact path="/voice" element={<Voice />} />
 				<Route path="/video/:name/:id" element={<Video/>} />
 			</Routes>
 		</Router>

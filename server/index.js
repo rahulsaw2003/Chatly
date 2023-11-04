@@ -28,9 +28,9 @@ app.use("/api/message", messageRoutes);
 mongoose.set("strictQuery", false);
 mongoDBConnect();
 
-// app.get('*', (req, res) => {
-// 	// send the index.html from the build folder
-// })
+app.get('/me', (req, res) => {
+	res.send("Hello World");
+})
 
 const server = app.listen(process.env.PORT, () => {
 	console.log(`Server Started on PORT - ${process.env.PORT}`);
@@ -39,7 +39,7 @@ const server = app.listen(process.env.PORT, () => {
 const io = new Server.Server(server, {
 	pingTimeout: 60000,
 	cors: {
-		origin: "http://localhost:3000",
+		origin: process.env.BASE_URL,
 	},
 });
 

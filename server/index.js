@@ -28,9 +28,9 @@ app.use("/api/message", messageRoutes);
 mongoose.set("strictQuery", false);
 mongoDBConnect();
 
-app.get('/me', (req, res) => {
+app.post("/me", (req, res) => {
 	res.send("Hello World");
-})
+});
 
 const server = app.listen(process.env.PORT, () => {
 	console.log(`Server Started on PORT - ${process.env.PORT}`);

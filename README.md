@@ -391,6 +391,4 @@ Enjoy using Chatly for seamless communication and collaboration!
 
 **Roll Number:** 2021CHB1052
 
-This project is developed as an assignment for **I'mbesideyou's 2024 Summer Internship SDE Role**.
-
 Feel free to reach out to me at 2021chb1052@iitrpr.ac.in for any questions, feedback, or collaboration opportunities related to this project.

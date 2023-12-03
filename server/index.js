@@ -18,6 +18,8 @@ const corsConfig = {
 	credentials: true,
 };
 
+const port = process.env.PORT || 4000;
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(corsConfig));
@@ -28,12 +30,12 @@ app.use("/api/message", messageRoutes);
 mongoose.set("strictQuery", false);
 mongoDBConnect();
 
-app.post("/me", (req, res) => {
-	res.send("Hello World");
+app.get("/", (req, res) => {
+	res.send("Chatly Server is running..");
 });
 
-const server = app.listen(process.env.PORT, () => {
-	console.log(`Server Started on PORT - ${process.env.PORT}`);
+const server = app.listen(port, () => {
+	console.log(`Server is running on port: ${port}`);
 });
 
 const io = new Server.Server(server, {
